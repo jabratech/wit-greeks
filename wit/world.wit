@@ -1,0 +1,26 @@
+package jabratech:component-greeks;
+
+interface greeks {
+    use jabratech:common/types.{option-kind};
+
+    record greeks {
+        option_kind: option-kind,
+        spot_rate: f64,
+        strike: f64,
+        time_to_maturity: f64,
+        domestic_interest_rate: f64,
+        foreign_interest_rate: f64,
+        volatility: f64,
+    }
+
+    analytic_delta: func(greeks: greeks) -> result<f64, string>;
+    analytic_gamma: func(greeks: greeks) -> result<f64, string>;
+    analytic_theta: func(greeks: greeks) -> result<f64, string>;
+
+}
+
+world component-greeks {
+
+    export greeks;
+
+}
