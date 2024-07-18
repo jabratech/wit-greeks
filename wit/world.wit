@@ -3,7 +3,7 @@ package jabratech:component-greeks;
 interface greeks {
     use jabratech:common/types.{option-kind};
 
-    record greeks {
+    record request-greeks {
         option_kind: option-kind,
         spot_rate: f64,
         strike: f64,
@@ -13,9 +13,13 @@ interface greeks {
         volatility: f64,
     }
 
-    analytic_delta: func(greeks: greeks) -> result<f64, string>;
-    analytic_gamma: func(greeks: greeks) -> result<f64, string>;
-    analytic_theta: func(greeks: greeks) -> result<f64, string>;
+    record response-greeks {
+        delta: f64,
+        gamma: f64,
+        theta: f64,
+    }
+
+    calculate-greeks: func(request: request-greeks) -> result<response-greeks, string>;
 
 }
 
